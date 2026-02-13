@@ -177,6 +177,17 @@ services:
         source: ./Revolt.toml
         target: /Revolt.toml
 
+  livekit:
+    image: livekit/livekit-server:v1.9.9
+    command: --config /etc/livekit.yml
+    volumes:
+      - ./livekit.yml:/etc/livekit.yml
+    ports:
+      - "7881:7881"
+      - "50000-50100:50000-50100/udp"
+    restart: always
+
+
   # Create buckets for minio.
   createbuckets:
     image: docker.io/minio/mc
@@ -194,6 +205,6 @@ services:
 
   # Web App
   web:
-    image: stoat-web
+    build: ./web
     restart: always
     env_file: .env.web
