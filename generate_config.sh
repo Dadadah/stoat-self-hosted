@@ -33,7 +33,7 @@ secret=$(openssl rand -hex 24)
 
 # livekit key
 echo "" >> livekit.yml
-echo "key:" >> livekit.yml
+echo "keys:" >> livekit.yml
 echo "  $key: $secret" >> livekit.yml
 
 # livekit config
