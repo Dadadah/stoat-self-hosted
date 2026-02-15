@@ -39,7 +39,7 @@ echo "" >> livekit.yml
 echo "webhook:" >> livekit.yml
 echo "  api_key: $key" >> livekit.yml
 echo "  urls:" >> livekit.yml
-echo "  - \"https://$1/ingress\"" >> livekit.yml
+echo "  - \"https://$1/ingress/worldwide\"" >> livekit.yml
 
 # livekit config
 echo "" >> Revolt.toml
