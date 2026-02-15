@@ -35,6 +35,11 @@ secret=$(openssl rand -hex 24)
 echo "" >> livekit.yml
 echo "keys:" >> livekit.yml
 echo "  $key: $secret" >> livekit.yml
+echo "" >> livekit.yml
+echo "webhook:" >> livekit.yml
+echo "  api_key: $key" >> livekit.yml
+echo "  urls:" >> livekit.yml
+echo "  - \"https://$1/ingress\"" >> livekit.yml
 
 # livekit config
 echo "" >> Revolt.toml

@@ -41,5 +41,12 @@
 		}
 	}
 
+	route /ingress* {
+		uri strip_prefix /ingress
+		reverse_proxy http://voice-ingress:8500 {
+			header_down Location "^/" "/ingress/"
+		}
+	}
+
 	reverse_proxy http://web:5000
 }
