@@ -12,6 +12,9 @@ echo "events = \"wss://$1/ws\"" >> Revolt.toml
 echo "autumn = \"https://$1/autumn\"" >> Revolt.toml
 echo "january = \"https://$1/january\"" >> Revolt.toml
 
+echo "[hosts.livekit]" >> Revolt.toml
+echo "worldwide = \"wss://$1/livekit\"" >> Revolt.toml
+
 # VAPID keys
 echo "" >> Revolt.toml
 echo "[pushd.vapid]" >> Revolt.toml
@@ -24,3 +27,25 @@ rm vapid_private.pem
 echo "" >> Revolt.toml
 echo "[files]" >> Revolt.toml
 echo "encryption_key = \"$(openssl rand -base64 32)\"" >> Revolt.toml
+
+livekit_key=$(openssl rand -hex 6)
+livekit_secret=$(openssl rand -hex 24)
+
+# livekit key
+echo "" >> livekit.yml
+echo "keys:" >> livekit.yml
+echo "  $livekit_key: $livekit_secret" >> livekit.yml
+echo "" >> livekit.yml
+echo "webhook:" >> livekit.yml
+echo "  api_key: $livekit_key" >> livekit.yml
+echo "  urls:" >> livekit.yml
+echo "  - \"https://$1/ingress/worldwide\"" >> livekit.yml
+
+# livekit config
+echo "" >> Revolt.toml
+echo "[api.livekit.nodes.worldwide]" >> Revolt.toml
+echo "url = \"https://$1/livekit\"" >> Revolt.toml
+echo "lat = 0.0" >> Revolt.toml
+echo "lon = 0.0" >> Revolt.toml
+echo "key = \"$livekit_key\"" >> Revolt.toml
+echo "secret = \"$livekit_secret\"" >> Revolt.toml

@@ -169,6 +169,30 @@ services:
         target: /Revolt.toml
     restart: always
 
+   # Voice ingress daemon
+  voice-ingress:
+    image: ghcr.io/stoatchat/voice-ingress:v0.11.1
+    restart: always
+    depends_on:
+      database:
+        condition: service_healthy
+      rabbit:
+        condition: service_healthy
+    volumes:
+      - type: bind
+        source: ./Revolt.toml
+        target: /Revolt.toml
+
+  livekit:
+    image: ghcr.io/stoatchat/livekit-server:v1.9.6
+    command: --config /etc/livekit.yml
+    volumes:
+      - ./livekit.yml:/etc/livekit.yml
+    ports:
+      - "7881:7881"
+      - "50000-50100:50000-50100/udp"
+    restart: always
+
   # Create buckets for minio.
   createbuckets:
     image: docker.io/minio/mc
@@ -183,3 +207,10 @@ services:
       /usr/bin/mc mb minio/revolt-uploads;
       exit 0;
       "
+
+  # Web App
+  # Commented out for now, waiting on official image
+  # web:
+  #   image: ghcr.io/stoatchat/for-web:v0.3.0
+  #   restart: always
+  #   env_file: .env.web

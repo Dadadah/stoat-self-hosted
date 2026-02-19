@@ -17,18 +17,13 @@ This repository contains configurations and instructions that can be used for de
 
 > [!WARNING]
 > If you are updating an instance from before November 28, 2024, please consult the [notices section](#notices) at the bottom.
+> If you are updating an instance from before October 5, 2025, please consult the [notices section](#notices) at the bottom.
 
 > [!IMPORTANT]
 > A list of security advisories is [provided at the bottom](#security-advisories).
 
 > [!NOTE]
 > Please consult _[What can I do with Stoat, and how do I self-host?](https://developers.revolt.chat/faq.html#admonition-what-can-i-do-with-revolt-and-how-do-i-self-host)_ on our developer site for information about licensing and brand use.
-
-> [!NOTE]
-> amd64 builds are not currently available for the web client.
-
-> [!NOTE]
-> This guide does not include working voice channels ([#138](https://github.com/revoltchat/self-hosted/pull/138#issuecomment-2762682655)). A [rework](https://github.com/revoltchat/backend/issues/313) is currently in progress.
 
 ## Table of Contents
 
@@ -102,6 +97,8 @@ apt-get update && apt-get upgrade -y
 ufw allow ssh
 ufw allow http
 ufw allow https
+ufw allow 7881/tcp
+ufw allow 50000:50100/udp
 ufw default deny
 ufw enable
 
@@ -415,6 +412,18 @@ db.invites.insertOne({ _id: "enter_an_invite_code_here" })
 > The following components have been added to the compose file:
 >
 > - Added `rabbit` (RabbitMQ) and `pushd` (Stoat push daemon)
+
+> [!IMPORTANT]
+> As of October 5, 2025, the following breaking changes have been applied:
+>
+> - Rename docker compose project from revolt to stoat
+>
+> These will NOT automatically be applied to your environment.
+>
+> You must run the environment with the old revolt name to apply the update. After you run `docker compose pull` during the upgrade procedure, you must run `docker compose -p revolt down`. You may then continue with the upgrade procedure.
+>
+> ```bash
+> 
 
 ## Security Advisories
 
