@@ -101,12 +101,6 @@ services:
         target: /Revolt.toml
     restart: always
 
-  # Web App
-  web:
-    image: ghcr.io/revoltchat/client:master
-    restart: always
-    env_file: .env.web
-
   # File server
   autumn:
     image: ghcr.io/stoatchat/file-server:v0.11.1
@@ -209,8 +203,7 @@ services:
       "
 
   # Web App
-  # Commented out for now, waiting on official image
-  # web:
-  #   image: ghcr.io/stoatchat/for-web:v0.3.0
-  #   restart: always
-  #   env_file: .env.web
+  web:
+    image: ghcr.io/stoatchat/for-web:6c5970f
+    restart: always
+    env_file: .env.web

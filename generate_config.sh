@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
-# set hostname for Caddy
+# set hostname for Caddy and vite variables
 echo "HOSTNAME=https://$1" > .env.web
 echo "REVOLT_PUBLIC_URL=https://$1/api" >> .env.web
+echo "VITE_API_URL=https://$1/api"
+echo "VITE_WS_URL=wss://$1/ws"
+echo "VITE_MEDIA_URL=https://$1/autumn"
+echo "VITE_PROXY_URL=https://$1/january"
 
 # hostnames
 echo "[hosts]" >> Revolt.toml
