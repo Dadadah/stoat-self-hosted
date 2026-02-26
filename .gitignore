@@ -6,5 +6,6 @@ Revolt.toml
 livekit.yml
 Revolt.toml.old
 livekit.yml.old
+secrets.env
 
 compose.override.yml
