@@ -195,7 +195,13 @@ Pull the latest version of this repository:
 git pull
 ```
 
-Check if your configuration file is correct by opening [the reference config file](https://github.com/stoatchat/stoatchat/blob/main/crates/core/config/Revolt.toml) and your `Revolt.toml` to compare changes.
+Ensure that your secrets in `Revolt.toml` and `secrets.env` match. If your secrets don't match, copy the secrets from `Revolt.toml` to `secrets.env`. The following step will **overwrite** your existing configuration. If you have custom configuration settings you will need to copy them over afterwards. Alternatively, you can forgo running the configurator, but you may miss out on new features.
+
+Run the configuration script with your domain and pass the overwrite flag:
+
+```bash
+./generate_config.sh your.domain --overwrite
+```
 
 Then pull all the latest images:
 
@@ -322,6 +328,9 @@ db.invites.insertOne({ _id: "enter_an_invite_code_here" })
 
 ## Notices
 
+<details>
+<summary>If you deployed Stoat before October 5, 2025...</summary>
+
 > [!IMPORTANT]
 > If you deployed Stoat before [2022-10-29](https://github.com/minio/docs/issues/624#issuecomment-1296608406), you may have to tag the `minio` image release if it's configured in "fs" mode.
 >
@@ -393,28 +402,9 @@ db.invites.insertOne({ _id: "enter_an_invite_code_here" })
 > These will NOT automatically be applied to your environment.
 >
 > You must run the environment with the old revolt name to apply the update. After you run `docker compose pull` during the upgrade procedure, you must run `docker compose -p revolt down`. You may then continue with the upgrade procedure.
+</details>
 
-> [!IMPORTANT]
-> As of February 18, 2026, livekit support and the new web app was added to the self host repo. In order to utilize the new voice features and the new web app, you must add a valid livekit configuration.
->
-> Before beginning the upgrade process, please do the following:
->
-> ```bash
-> git pull
-> chmod +x migrations/20260218-voice-config.sh
-> ./migrations/20260218-voice-config.sh your.domain
-> ```
->
-> This should append the new configurations to your existing configuration. Only run this migration once, as if you run it more than once your instance will fail to start. You may then continue with the upgrade procedure.
-
-> [!IMPORTANT]
-> As of February 20, 2026, there was an error in the `generate_config.sh` script. Please apply the following changes to your configuration:
->
-> In `Revolt.toml`, under the section `[api.livekit.nodes.worldwide]`, change the url value to `http://livekit:7880`
->
-> In `livekit.yml`, under the section `webhook`, change the first line under `url` to `http://voice-ingress:8500/worldwide`
->
-> Please note that these say `http` and not `https`. That is intentional.
+<br />
 
 > [!IMPORTANT]
 > As of February 28, 2026, the configuration script will load secrets into `secrets.env`. You must copy your existing secrets into secrets.env to prevent `generate_config.sh` from overwriting your secrets. If your secrets are overwritten you will lose access to all files on your Stoat instance.
@@ -431,7 +421,7 @@ db.invites.insertOne({ _id: "enter_an_invite_code_here" })
 > micro secrets.env
 > ```
 >
-> All of your secrets can be found in Revolt.toml and should be copied to your `secrets.env` file. After all 5 secrets are copied over, you are safe to run `generate_config.sh` to get new configuration options.
+> All of your secrets can be found in `Revolt.toml` and should be copied to your `secrets.env` file. After all 5 secrets are copied over, you are safe to run `generate_config.sh` to get new configuration options.
 
 ## Security Advisories
 
