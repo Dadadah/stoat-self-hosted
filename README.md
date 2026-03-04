@@ -30,7 +30,7 @@ This repository contains configurations and instructions that can be used for de
   - [Secure your server](#secure-your-server)
   - [Configure your domain](#configure-your-domain)
   - [Install Required Dependencies](#install-required-dependencies)
-- [Configuring](#configuring)
+- [Configuration](#configuration)
 - [Updating](#updating)
 - [Additional Notes](#additional-notes)
   - [Placing Behind Another Reverse-Proxy or Another Port](#placing-behind-another-reverse-proxy-or-another-port)
