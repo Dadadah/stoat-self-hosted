@@ -336,14 +336,12 @@ Livekit requires ports 7881/tcp and 50000-50100/udp to be openly accessible on t
 <details>
 <summary>If you deployed Stoat before October 5, 2025...</summary>
 
-> [!IMPORTANT]
 > If you deployed Stoat before [2022-10-29](https://github.com/minio/docs/issues/624#issuecomment-1296608406), you may have to tag the `minio` image release if it's configured in "fs" mode.
 >
 > ```yml
 > image: minio/minio:RELEASE.2022-10-24T18-35-07Z
 > ```
 
-> [!IMPORTANT]
 > If you deployed Stoat before [2023-04-21](https://github.com/stoatchat/stoatchat/commit/32542a822e3de0fc8cc7b29af46c54a9284ee2de), you may have to flush your Redis database.
 >
 > ```bash
@@ -356,7 +354,6 @@ Livekit requires ports 7881/tcp and 50000-50100/udp to be openly accessible on t
 > FLUSHDB
 > ```
 
-> [!IMPORTANT]
 > As of 30th September 2024, Autumn has undergone a major refactor, which requires a manual migration.
 >
 > To begin, add a temporary container that we can work from:
@@ -386,7 +383,6 @@ Livekit requires ports 7881/tcp and 50000-50100/udp to be openly accessible on t
 > node ./20240929-autumn-rewrite.mjs
 > ```
 
-> [!IMPORTANT]
 > As of November 28, 2024, the following breaking changes have been applied:
 >
 > - Rename config section `api.vapid` -> `pushd.vapid`
@@ -399,7 +395,6 @@ Livekit requires ports 7881/tcp and 50000-50100/udp to be openly accessible on t
 >
 > - Added `rabbit` (RabbitMQ) and `pushd` (Stoat push daemon)
 
-> [!IMPORTANT]
 > As of October 5, 2025, the following breaking changes have been applied:
 >
 > - Rename docker compose project from revolt to stoat
