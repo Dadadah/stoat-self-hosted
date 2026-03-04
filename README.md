@@ -38,6 +38,7 @@ This repository contains configurations and instructions that can be used for de
   - [Mongo Compatibility](#mongo-compatibility)
   - [KeyDB Compatibility](#keydb-compatibility)
   - [Making Your Instance Invite-only](#making-your-instance-invite-only)
+  - [Why ports 7881 and 50000-50100/udp aren't in the Caddyfile](#why-ports-7881-and-50000-50100udp-arent-in-the-caddyfile)
 - [Notices](#notices)
 - [Security Advisories](#security-advisories)
 
@@ -325,6 +326,10 @@ docker compose exec database mongosh
 use revolt
 db.invites.insertOne({ _id: "enter_an_invite_code_here" })
 ```
+
+### Why ports 7881 and 50000-50100/udp aren't in the Caddyfile
+
+Livekit requires ports 7881/tcp and 50000-50100/udp to be openly accessible on the internet. These ports are used for the RTC protocol. Caddy does not support RTC without significant configuration changes that are out of scope of this repo.
 
 ## Notices
 
