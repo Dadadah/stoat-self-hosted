@@ -277,7 +277,7 @@ services:
       - "27017:27017"
 ```
 
-For obvious reasons, be careful doing this.
+Docker will bypass your ufw rules when you do this. This means that if the port is open, the database will be publically accessible and anyone will be able to modify it.
 
 ### Mongo Compatibility
 
