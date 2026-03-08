@@ -76,6 +76,8 @@ echo "Configuring Stoat with hostname $DOMAIN"
 
 STOAT_HOSTNAME="https://$DOMAIN"
 
+echo "STOAT_DOMAIN=$DOMAIN" > .env
+
 read -rp "Would you like to place Stoat behind another reverse proxy? [y/N]: "
 if [ "$REPLY" = "y" ] || [ "$REPLY" = "Y" ]; then
     echo "Yes received. Configuring for reverse proxy."
